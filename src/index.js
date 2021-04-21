@@ -1,28 +1,33 @@
-import { ApolloServer } from 'apollo-server-express';
-import express from 'express';
+require('dotenv').config();
 import mongoose from 'mongoose';
 
-import { typeDefs } from './typeDefs';
-import { resolvers } from './resolvers';
+import server from './api/server';
+
+const port = process.env.PORT || 4000;
+
+process.on('uncaughtException', (err) => {
+  console.error(`${(new Date()).toUTCString()} uncaughtException:`, err);
+  process.exit(0);
+});
+
+process.on('unhandledRejection', (err) => {
+  console.error(`${(new Date()).toUTCString()} unhandledRejection:`, err);
+});
+
+
+// server.listen({ port }, () => console.log(
+//   `🚀 Server ready at http://localhost:${port}/api`,
+// ));
 
 
 const startServer = async () => {
-  const app = express();
-
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers
-  });
-
-  server.applyMiddleware({ app });
-
   await mongoose.connect('mongodb://localhost/test', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
 
-  app.listen({ port: 4000 }, () =>
-    console.log(`Server ready at http://localhost:4000${server.graphqlPath}`)
+  server.listen({ port }, () =>
+    console.log(`🚀 Server ready at http://localhost:${port}/api`)
   );
 }
 
