@@ -14,12 +14,6 @@ process.on('unhandledRejection', (err) => {
   console.error(`${(new Date()).toUTCString()} unhandledRejection:`, err);
 });
 
-
-// server.listen({ port }, () => console.log(
-//   `🚀 Server ready at http://localhost:${port}/api`,
-// ));
-
-
 const startServer = async () => {
   await mongoose.connect('mongodb://localhost/test', {
     useNewUrlParser: true,

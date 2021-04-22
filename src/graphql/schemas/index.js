@@ -1,18 +1,8 @@
 import { gql } from "apollo-server-express";
+import CommentType from './comment';
+import PostType from './post';
+import UserType from './user';
+import CatType from './cat';
 
-export const typeDefs = gql`
-  type Query {
-      hello: String!
-      cats: [Cat!]!
-      cat(name: String!): Cat!
-  }
+export default [CommentType, PostType, UserType, CatType]
 
-  type Cat {
-    id: ID!
-    name: String! 
-  }
-
-  type Mutation {
-    createCat(name: String!): Cat!
-  }
-`;

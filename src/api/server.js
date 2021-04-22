@@ -3,7 +3,7 @@ import { createServer } from 'http';
 import { ApolloServer } from 'apollo-server-express';
 import cors from 'cors';
 
-import { typeDefs } from '../graphql/schemas';
+import typeDefs from '../graphql/schemas';
 import { resolvers } from '../graphql/resolvers';
 import { context } from '../graphql/context';
 
