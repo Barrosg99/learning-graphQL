@@ -1,24 +1,28 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('posts', {
+    await queryInterface.createTable('comments', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      content: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      userId: {
+      postId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'posts',
+          key: 'id'
+        }
+      },
+      comment: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id'
@@ -35,6 +39,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Posts');
+    await queryInterface.dropTable('comments');
   }
 };

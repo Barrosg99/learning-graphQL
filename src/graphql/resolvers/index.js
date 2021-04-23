@@ -1,18 +1,4 @@
-import { Cat } from '../../models/Cat';
+import catResolvers from './cat';
+import userResolvers from './user';
 
-export const resolvers = {
-  Query: {
-    hello: () => 'relou o caralho estragou foi tudo',
-    cats: () => Cat.find(),
-    cat: async (_, { name }) => await Cat.findOne({ name }),
-  },
-
-  Mutation: {
-    createCat: async (_, { name }) => {
-      const kitty = new Cat({ name });
-      await kitty.save();
-      console.log(kitty);
-      return kitty;
-    }
-  }
-}
+export default [catResolvers, userResolvers];

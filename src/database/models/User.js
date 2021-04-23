@@ -18,12 +18,14 @@ module.exports = (sequelize, DataTypes) => {
   };
   User.init({
     name: DataTypes.STRING,
-    email: DataTypes.STRING
+    email: DataTypes.STRING,
+    password: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',
+    tableName: 'users',
     defaultScope: {
-      attributes: { exclude: ['password'] }
+      rawAttributes: { exclude: ['password'] }
     },
     hooks: {
       beforeCreate: async (user) => {
