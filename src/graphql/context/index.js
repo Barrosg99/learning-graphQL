@@ -9,6 +9,7 @@ const verifyToken = async (token) => {
     if (!token) return null;
     const { id } = jwt.verify(token, 'mySecret');
     const session = await Session.findById(id);
+    if (!session) return null;
     const { userId } = session;
     const user = await User.findByPk(userId);
     return user;

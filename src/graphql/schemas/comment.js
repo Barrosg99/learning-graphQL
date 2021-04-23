@@ -10,10 +10,10 @@ export default gql`
   }
 
   extend type Mutation {
-    createCommment(content: String!, postId: ID!): CreateCommmentResponse
+    createComment(content: String!, postId: ID!): CreateCommentResponse
   }
 
-  type CreateCommmentResponse {
+  type CreateCommentResponse {
     id: ID!
     content: String!
     createdAt: String!
